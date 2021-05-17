@@ -1,14 +1,5 @@
+import { renderProfilePage } from './render/renderProfilePage';
 import { parseGithubUrl } from './utils/url-helper';
-
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-  if (msg.color) {
-    console.log('Receive color = ' + msg.color);
-    document.body.style.backgroundColor = msg.color;
-    sendResponse('Change color to ' + msg.color);
-  } else {
-    sendResponse('Color message is none.');
-  }
-});
 
 function tryApplyGithubProfileTab() {
   const { username, repoName, searchQuery = '' } = parseGithubUrl(
@@ -26,11 +17,17 @@ function tryApplyGithubProfileTab() {
     }
 
     if (isProfileTabSelected === true) {
+      // Remove selected Node
       const currentSelectedNode = nav.querySelector('.selected');
 
       currentSelectedNode?.classList.remove('selected');
       currentSelectedNode?.removeAttribute('aria-current');
+
+      console.log('Start to render Profile Page');
+      renderProfilePage(username);
     }
+
+    // Render ProfileTab
     const profileTab = document.createElement('a');
     profileTab.className =
       'UnderlineNav-item' + (isProfileTabSelected === true ? ' selected' : '');
