@@ -12,6 +12,10 @@ export const ProfilePage: React.FC<ProfilePageProps> = React.memo((props) => {
       <h2 className="f4 mb-2 text-normal">{username}'s github profile</h2>
 
       <div>
+        {buildProfileImage('https://visitor-badge.laobi.icu/badge', {
+          page_id: `github_profile.${username}`,
+        })}
+
         {buildProfileImage(
           'https://github-readme-streak-stats.herokuapp.com/',
           {

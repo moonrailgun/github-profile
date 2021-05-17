@@ -3,7 +3,7 @@
 
   "name": "Github Profile",
   "description": "Add a github profile tab",
-  "version": "1.0",
+  "version": "1.1",
 
   "icons": {
     "16": "icon@16.png",
